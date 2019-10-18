@@ -1,0 +1,21 @@
+{
+    "name": "apuc/yii2-channels-webhook",
+    "description": "Extention, that allows you to throw a webhook after saving model",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kavalar",
+            "email": "apuc06@mail.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "apuc\\channels_webhook\\": ""
+        }
+    }
+}
