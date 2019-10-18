@@ -20,3 +20,13 @@ or add
 ```
 
 to the require section of your `composer.json` file.
+
+Usage example
+
+```
+"websocket" => [
+    "class" => WebHookBehavior::className(),
+    "url" => "https://example.com"
+    "onUpdate" => false
+]
+```
