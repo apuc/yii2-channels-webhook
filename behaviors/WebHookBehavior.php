@@ -5,8 +5,10 @@ namespace apuc\channels_webhook\behaviors;
 
 
 use yii\base\Behavior;
+use yii\base\Model;
 use yii\db\ActiveRecord;
 use yii\web\HttpException;
+use yii\widgets\ActiveForm;
 
 class WebHookBehavior extends Behavior
 {
@@ -19,6 +21,11 @@ class WebHookBehavior extends Behavior
      * @var array аттрибуты, которые будут отправляться вместе с запросом, по умолчанию отправляет все аттрибуты
      */
     public $attributes = [];
+
+    /**
+     * @var array связанные сущности, которые будут отправляться вместе с моделью
+     */
+    public $relations = [];
 
     /**
      * @var bool должен ли веб хук срабатывать при создании новой записи
@@ -50,6 +57,10 @@ class WebHookBehavior extends Behavior
                 $attributes[$attribute] = $this->owner->attributes[$attribute];
             }
         }
+        foreach ($this->relations as $relation){
+            $attributes[]=$this->owner->$relation->attributes;
+        }
+        throw new HttpException(454, json_encode($attributes));
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
