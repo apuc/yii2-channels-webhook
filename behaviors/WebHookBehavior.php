@@ -67,5 +67,6 @@ class WebHookBehavior extends Behavior
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($attributes));
         $response = curl_exec($curl);
         curl_close($curl);
+	return $attributes;
     }
 }
