@@ -60,7 +60,6 @@ class WebHookBehavior extends Behavior
         foreach ($this->relations as $relation){
             $attributes[]=$this->owner->$relation->attributes;
         }
-        throw new HttpException(454, json_encode($attributes));
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
