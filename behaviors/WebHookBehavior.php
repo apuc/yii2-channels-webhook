@@ -58,7 +58,7 @@ class WebHookBehavior extends Behavior
             }
         }
         foreach ($this->relations as $relation){
-            $attributes[]=$this->owner->$relation->attributes;
+            $attributes[$relation]=$this->owner->$relation->attributes;
         }
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->url);
