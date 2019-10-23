@@ -58,7 +58,14 @@ class WebHookBehavior extends Behavior
             }
         }
         foreach ($this->relations as $relation){
-            $attributes[$relation]=$this->owner->$relation->attributes;
+            $data = $this->owner->$relation;
+            if(!is_array($data))
+                $attributes[$relation]=$data->attributes;
+            else {
+                foreach ($data as $d) {
+                    $attributes[$relation][]=$d->attributes;
+                }
+            }
         }
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->url);
@@ -70,3 +77,4 @@ class WebHookBehavior extends Behavior
 	return $attributes;
     }
 }
+
