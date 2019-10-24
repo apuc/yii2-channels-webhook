@@ -30,3 +30,13 @@ Usage example
     "onUpdate" => false
 ]
 ```
+
+You can also add module for testing
+
+```
+'module' => [
+    'test' => [
+        'class' => 'apuc\channels_webhook\modules\test\Test',
+    ],
+]
+```
